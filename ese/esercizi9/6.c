@@ -48,6 +48,7 @@ lista crea_lista()
 
     printf("Inserisci un numero: ");
     scanf("%d",&n);
+    printf("\n");
     
     while(n != -1)
         {
