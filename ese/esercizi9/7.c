@@ -1,3 +1,13 @@
+/*
+
+    Esercizio 7. 
+    Si scriva una funzione che data la testa di una lista 
+    di numeri interi 𝑎 ritorni la testa della lista invertita, 
+    ossia i nodi sono collegati in ordine inverso, dall’ultimo al primo. 
+
+*/
+
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -70,82 +80,52 @@ lista crea_lista()
     
 }
 
-// recupero l'elemento precedente dell'elemento dato
-/*
-lista scorri_lista(lista completa, lista a)
-{
-    while(completa->next != NULL)
-    {
-        if(completa->next->info == a->info)
-            {
-                return completa;
-            }
-        
-        completa = completa->next;
-    }
-
-}
-*/
-
-lista scorri_lista(lista a)
-{
-    while(a->next != NULL)
-        {
-            a = a->next;
-        }
-
-    return a;
-}
-
 lista inverti_lista(lista a)
 {
 
-    lista invertita = NULL;
+    lista testa = NULL;
 
     elementoLista * precedente = malloc(sizeof(elementoLista));
     elementoLista * nuovo = malloc(sizeof(elementoLista));
 
-    printf("a: %d\n", a->info);
 
-    nuovo->info = a->info;
-    nuovo->next = NULL;
+    nuovo->info = a->info;          //Il primo elemento della lista diventa la nuova coda 
+    nuovo->next = NULL;             // quindi il next sarà NULL
 
-    precedente = a;
-    //a = a->next;
+    testa = nuovo;                  // Ogni nuovo elemento aggiunto diventerà la nuova testa
+
+    precedente = nuovo;             // Salvo il precedente valore a cui punterà il nuovo elemento creato
+
 
     while(a->next != NULL)
     {
+
         a = a->next;
-        printf("a: %d\n", a->info);
 
         nuovo = malloc(sizeof(elementoLista));
 
         nuovo->info = a->info;
-        nuovo->next = precedente;
 
-        precedente = a;
-        invertita = nuovo;
+        nuovo->next = precedente; 
+
+        precedente = nuovo;     // ad ogni ciclo il valore precedente viene aggiornato con quello appena modificato
+
+        testa = nuovo;          // E quindi la nuova testa sarà il nuovo valore
+        
     }
-    
 
-    return invertita;
+
+    return testa;
 }
 
 
 void main()
 {
     lista a = crea_lista();
-    
-    //lista coda = scorri_lista(a);
-
-    stampa_lista(a);
-    //printf("CODA: %d\n", coda->info);
 
     a = inverti_lista(a);
 
-    /*printf("sad: %d", a->info);
-    printf("\n");*/
-
+    printf("\n\t Lista Invertita \n\n");
     stampa_lista(a);
     
 }
