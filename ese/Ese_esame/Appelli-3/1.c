@@ -17,27 +17,26 @@ int lenght(int n)
 
 int f(int n)
 {
-  int n_temp = n;
   int n_c = 0;
   
-  while(n_temp != 0)
+  while(n != 0)
   {
     int molt = 1;
-    int lung = 0;
+    //int lung = 0; 
     int tmp = 0;
     
-    tmp = n_temp % 10; // prendo il valore
+    tmp = n % 10; // prendo il valore
 
-    lung = lenght(n_temp); // calcolo la lunghezza di n
+    //lung = lenght(n); // calcolo la lunghezza di n
  
-    for(int j = 1; j<lung; j++)
+    for(int j = 1; j<lenght(n); j++)
     {
       molt = molt * 10;
     }
     
-    n_c = n_c + tmp * molt;
+    n_c += tmp * molt;
     
-    n_temp = n_temp / 10;
+    n = n / 10;
 
   }
 
@@ -46,7 +45,7 @@ int f(int n)
 
 void main()
 {
-  int n;
+  int n = 0;
   
   printf("Numero: ");
   scanf("%d", &n);

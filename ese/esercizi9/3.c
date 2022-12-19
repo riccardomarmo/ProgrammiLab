@@ -107,3 +107,4 @@ void main()
     else
         stampa_lista(a);
 }
+
